@@ -7,7 +7,7 @@ const bookRouter=express.Router();
 
 
 // List all available books
-bookRouter.get('/book/books', async (req, res) => {
+bookRouter.get('/books', async (req, res) => {
     try {
       const books = await bookModel.find();
       res.status(200).json(books);
@@ -18,7 +18,7 @@ bookRouter.get('/book/books', async (req, res) => {
   });
   
   
-  bookRouter.get('/book/books/:id', async (req, res) => {
+  bookRouter.get('/books/:id', async (req, res) => {
     try {
       const book = await bookModel.findById(req.params.id);
       if (!book) {
@@ -32,7 +32,7 @@ bookRouter.get('/book/books', async (req, res) => {
   });
 
   // Add a new book (Protected Route)
-bookRouter.post('/api/books', async (req, res) => {
+bookRouter.post('/books', async (req, res) => {
     
     try {
       const { title, author, category, price, quantity } = req.body;
@@ -54,7 +54,7 @@ bookRouter.post('/api/books', async (req, res) => {
   });
   
  
-bookRouter.put('/book/books/:id', async (req, res) => {
+bookRouter.put('/books/:id', async (req, res) => {
     
     try {
       const { title, author, category, price, quantity } = req.body;
@@ -83,7 +83,7 @@ bookRouter.put('/book/books/:id', async (req, res) => {
   });
   
   
-  bookRouter.delete('/book/books/:id', async (req, res) => {
+  bookRouter.delete('/books/:id', async (req, res) => {
     
     try {
       const deletedBook = await bookModel.findByIdAndDelete(req.params.id);

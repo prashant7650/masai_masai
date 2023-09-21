@@ -6,7 +6,7 @@ const bcrypt=require("bcrypt")
 const orderRouter=express.Router();
 
 
-orderRouter.post('/order/order', async (req, res) => {
+orderRouter.post('/order', async (req, res) => {
    
     try {
       const { userId, books, totalAmount } = req.body;
@@ -25,7 +25,7 @@ orderRouter.post('/order/order', async (req, res) => {
     }
   });
  
-orderRouter.get('/order/orders', async (req, res) => {
+orderRouter.get('/orders', async (req, res) => {
     try {
       const orders = await orderModel.find().populate('user').populate('books');
       res.status(200).json(orders);
